@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.DS_Store
+.idea/
+.vscode/
+evidencias/*.txt
+!evidencias/README.md

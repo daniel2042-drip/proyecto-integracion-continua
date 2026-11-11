@@ -1,0 +1,7 @@
+APROBADO: sintaxis Python: app/app.py
+APROBADO: sintaxis Python: app/start.py
+APROBADO: sintaxis Python: scripts/test_integracion.py
+APROBADO: estructura YAML de Docker Compose, red, volumen y dependencia saludable
+APROBADO: estructura YAML de GitHub Actions y paso de prueba de integración
+NO EJECUTADO: Docker Compose real (motor Docker no disponible en este entorno)
+NO EJECUTADO: pipeline GitHub Actions (requiere repositorio remoto)

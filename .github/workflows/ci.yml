@@ -1,0 +1,31 @@
+name: CI - Docker Compose y API
+"on":
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Configurar entorno de prueba efimero
+        run: cp .env.example .env
+      - name: Validar configuracion Compose
+        run: docker compose config --quiet
+      - name: Construir y arrancar contenedores
+        run: docker compose up --build -d --wait --wait-timeout 120
+      - name: Verificar contenedores activos
+        run: docker compose ps
+      - name: Probar comunicacion Flask y PostgreSQL
+        run: python3 scripts/test_integracion.py
+      - name: Diagnostico en caso de error
+        if: failure()
+        run: docker compose logs --no-color
+      - name: Limpiar infraestructura
+        if: always()
+        run: docker compose down -v
