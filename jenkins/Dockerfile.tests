@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+WORKDIR /work
+COPY app/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+COPY app/ /work/app/
+COPY tests/ /work/tests/
+COPY jenkins/ci_integration_test.py /work/jenkins/ci_integration_test.py
+CMD ["python", "-m", "unittest", "discover", "-s", "tests", "-v"]

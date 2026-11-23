@@ -1,0 +1,18 @@
+name: poli-jenkins-semana5
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jenkins_semana5
+    # Solo accesible desde este Mac (no expuesto a la red local).
+    ports:
+      - "127.0.0.1:8080:8080"
+    # ADVERTENCIA: acceso al daemon Docker del host. Solo en entorno local confiable.
+    user: "0:0"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+volumes:
+  jenkins_home:

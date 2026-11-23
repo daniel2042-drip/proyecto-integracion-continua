@@ -8,3 +8,5 @@ __pycache__/
 .vscode/
 evidencias/*.txt
 !evidencias/README.md
+
+evidencias/*.zip
